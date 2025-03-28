@@ -1,4 +1,5 @@
 import pygame
+import random
 class Alien:
     def __init__(self):
         self.img = pygame.image.load("images/ufo.png").convert_alpha()
@@ -8,3 +9,7 @@ class Alien:
         self.y = 350
 
         self.rect = self.img.get_rect()
+    
+    def respawn(self):
+        self.x = 1350
+        self.y = random.randint(1,644)

@@ -7,4 +7,4 @@ class Player:
         self.x = 200
         self.y = 300
         self.rect = self.img.get_rect()
-        self.pontos = 1
+        self.pontos = 50

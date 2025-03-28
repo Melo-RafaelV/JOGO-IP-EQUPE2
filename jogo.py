@@ -2,23 +2,14 @@ from Scripts.player import Player
 from Scripts.alien import Alien
 from Scripts.disparos import Disparos
 
+
+
 import pygame
 import random
 
 
-def respawn():
-    x = 1350
-    y = random.randint(1,644)
-    return (x,y)
 
 
-
-def disparos():
-    disparado = False
-    respawn_x = player.x
-    respawn_y = player.y + 15
-    vel_disparo= 0
-    return [respawn_x,respawn_y,disparado,vel_disparo]
 
 
 def colisoes(player,alien,disparo):
@@ -90,16 +81,14 @@ while rodando:
 
     #respawn
     if alien.x == 50:
-        alien.x = respawn()[0]
-        alien.y = respawn()[1]
+        alien.respawn()
     
     if disparo.x == 1300 :
-        disparo.x,disparo.y,disparo.status ,disparo.vel = disparos()
+        disparo.atirar(player)
 
     if colisoes(player,alien,disparo):
-        alien.x = respawn()[0]
-        alien.y = respawn()[1]
-        disparo.x,disparo.y,disparo.status,disparo.vel = disparos()
+        alien.respawn()
+        disparo.atirar(player)
     
     if player.pontos == -1:
         rodando = False

@@ -8,3 +8,9 @@ class Disparos:
         self.y = 300
         self.rect = self.img.get_rect()
         self.status = False
+    
+    def atirar(self, player):
+        self.status = False
+        self.x = player.x
+        self.y = player.y + 15
+        self.vel= 0
