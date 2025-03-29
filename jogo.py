@@ -5,17 +5,12 @@ from Scripts.disparos import Disparos
 
 
 import pygame
-import random
-
-
-
 
 
 
 def colisoes(player,alien,disparo):
-    player.pontos
     if player.rect.colliderect(alien.rect) or alien.rect.x == 60:
-        player.pontos -= 1
+        player.vidas -= 1
         return True
     elif disparo.rect.colliderect(alien.rect):
         player.pontos += 1
@@ -23,10 +18,6 @@ def colisoes(player,alien,disparo):
     else:
         return False
         
-
-
-
-
 
 pygame.init()
 
@@ -90,14 +81,15 @@ while rodando:
         alien.respawn()
         disparo.atirar(player)
     
-    if player.pontos == -1:
+    if player.vidas == 0:
         rodando = False
 
     #movimentos
     x -=0.5
-    alien.x -= 2 #movimentando o alien
+    alien.x -= 2 #movimentando o alienww
     disparo.x += disparo.vel
 
+    player.desenhar_vida(screen)
 
     #posições rect
     player.rect.y,player.rect.x = player.y,player.x
