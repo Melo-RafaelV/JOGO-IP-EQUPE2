@@ -1,6 +1,7 @@
 from Scripts.player import Player
 from Scripts.alien import Alien
 from Scripts.disparos import Disparos
+from Scripts.coletaveis import Coletaveis
 
 
 
@@ -8,13 +9,20 @@ import pygame
 
 
 
-def colisoes(player,alien,disparo):
+def colisoes(player,alien,disparo,coletaveis):
     if player.rect.colliderect(alien.rect) or alien.rect.x == 60:
         player.vidas -= 1
         return True
     elif disparo.rect.colliderect(alien.rect):
         player.pontos += 1
         return True
+    elif coletaveis.status:
+        if disparo.rect.colliderect(coletaveis.cura_rect):
+            player.vidas = min(player.vidas + 1, 5)
+            coletaveis.status = False
+            disparo.atirar(player)
+            coletaveis.cura_rect = None
+            return False
     else:
         return False
         
@@ -36,6 +44,7 @@ bg = pygame.transform.scale(bg,(x,y))
 player = Player()
 alien = Alien()
 disparo = Disparos()
+coletaveis = Coletaveis()
 
 rodando = True
 
@@ -77,10 +86,17 @@ while rodando:
     if disparo.x == 1300 :
         disparo.atirar(player)
 
-    if colisoes(player,alien,disparo):
+    if colisoes(player,alien,disparo,coletaveis):
         alien.respawn()
         disparo.atirar(player)
     
+    if player.pontos%10 == 0 and player.pontos > 0 and not coletaveis.status:
+        coletaveis.status = True
+    
+    if coletaveis.status:
+        coletaveis.desenhar_coletaveis(screen)
+        
+
     if player.vidas == 0:
         rodando = False
 
