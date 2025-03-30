@@ -17,11 +17,12 @@ def colisoes(player,alien,disparo,coletaveis):
         player.pontos += 1
         return True
     elif coletaveis.status:
-        if disparo.rect.colliderect(coletaveis.cura_rect):
+        if disparo.rect.colliderect(coletaveis.rect):
             player.vidas = min(player.vidas + 1, 5)
             coletaveis.status = False
             disparo.atirar(player)
-            coletaveis.cura_rect = None
+            coletaveis.rect = None
+            coletaveis.x = 1350
             return False
     else:
         return False
@@ -83,6 +84,11 @@ while rodando:
     if alien.x == 50:
         alien.respawn()
     
+    if coletaveis.x <=60:
+            coletaveis.status = False
+            coletaveis.rect = None
+            coletaveis.restaurar()
+    
     if disparo.x == 1300 :
         disparo.atirar(player)
 
@@ -104,6 +110,8 @@ while rodando:
     x -=0.5
     alien.x -= 2 #movimentando o alienww
     disparo.x += disparo.vel
+    if coletaveis.status:
+        coletaveis.x -=0.5
 
     player.desenhar_vida(screen)
 
