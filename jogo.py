@@ -141,7 +141,7 @@ def jogo(screen):
             coletaveis.status = True
         
         if coletaveis.status:
-            coletaveis.desenhar_coletaveis(screen)
+            coletaveis.desenhar_coletaveis(screen, player)
             
 
         if player.vidas == 0:
