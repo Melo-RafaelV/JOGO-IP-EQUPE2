@@ -15,11 +15,19 @@ def colisoes(player,alien,disparo,coletaveis):
         return True
     elif coletaveis.status:
         if disparo.rect.colliderect(coletaveis.rect):
-            player.vidas = min(player.vidas + 1, 5)
+            if coletaveis.tipo == "cura":
+                player.vidas = min(player.vidas + 1, 5)
+
+            elif coletaveis.tipo == "energetico":
+                player.aceleracao = 1.5
+                coletaveis.tempo = pygame.time.get_ticks()
+            
+
             coletaveis.status = False
-            disparo.atirar(player)
             coletaveis.rect = None
             coletaveis.x = 1350
+            coletaveis.tipo = None
+            disparo.atirar(player)
             return False
     else:
         return False
@@ -81,7 +89,6 @@ def jogo(screen):
     coletaveis = Coletaveis()
 
     rodando = True
-
     while rodando:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -94,18 +101,21 @@ def jogo(screen):
         if rel_x <1280:
             screen.blit(bg,(rel_x,0))
 
+        if pygame.time.get_ticks() - coletaveis.tempo >= 10000:
+            player.aceleracao = 1
+            coletaveis.tempo = 0
 
         #comandos
         tecla = pygame.key.get_pressed()
         if tecla[pygame.K_w] and player.y > 1:
-            player.y -=1
+            player.y -=1*player.aceleracao
             if not disparo.status:
-                disparo.y -=1
+                disparo.y -=1 *player.aceleracao
 
         if tecla[pygame.K_s] and player.y < 665:
-            player.y += 1
+            player.y += 1*player.aceleracao
             if not disparo.status:
-                disparo.y +=1
+                disparo.y +=1 *player.aceleracao
 
         if tecla[pygame.K_SPACE]:
             disparo.status = True
@@ -131,7 +141,7 @@ def jogo(screen):
             coletaveis.status = True
         
         if coletaveis.status:
-            coletaveis.desenhar_coletaveis(screen)
+            coletaveis.desenhar_coletaveis(screen, player)
             
 
         if player.vidas == 0:
@@ -163,9 +173,10 @@ def jogo(screen):
 
         pygame.display.update()
 
+
         if not rodando: # fim de jogo
             game_over(screen, points)
-    
+ 
 if __name__ == "__main__":
     pygame.init()  # Inicializa o pygame
     screen = pygame.display.set_mode((1280, 720))

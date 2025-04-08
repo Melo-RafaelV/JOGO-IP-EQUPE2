@@ -11,6 +11,7 @@ class Player:
         self.vidas = 4
         self.coracao =  pygame.image.load("images/vida.png").convert_alpha()
         self.coracao =  pygame.transform.scale(self.coracao,(30,30))
+        self.aceleracao = 1
 
         
     def desenhar_vida(self,screen):
