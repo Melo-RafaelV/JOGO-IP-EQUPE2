@@ -156,6 +156,18 @@ def jogo(screen):
 
         if player.vidas == 0:
             rodando = False
+        
+        if tecla[pygame.K_p]:
+            pause = True
+            while pause:
+                for event in pygame.event.get():
+                    if event.type == pygame.KEYDOWN:
+                        if event.key == pygame.K_RETURN:
+                            pause = False
+                    if event.type == pygame.QUIT:
+                        pause = False
+                        rodando = False
+        
 
         #movimentos
         x -=0.5
