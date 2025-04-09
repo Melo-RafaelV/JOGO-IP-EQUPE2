@@ -7,7 +7,7 @@ from Scripts.coletaveis import Coletaveis
 
 
 def colisoes(player,alien,disparo,coletaveis):
-    if player.rect.colliderect(alien.rect) or alien.rect.x == 60:
+    if player.rect.colliderect(alien.rect) or alien.rect.x <= 60:
         player.vidas -= 1
         return True
     elif disparo.rect.colliderect(alien.rect):
@@ -17,10 +17,17 @@ def colisoes(player,alien,disparo,coletaveis):
         if disparo.rect.colliderect(coletaveis.rect):
             if coletaveis.tipo == "cura":
                 player.vidas = min(player.vidas + 1, 5)
+                coletaveis.cura_qnt +=1
 
             elif coletaveis.tipo == "energetico":
                 player.aceleracao = 1.5
                 coletaveis.tempo = pygame.time.get_ticks()
+                coletaveis.energetico_qnt += 1
+           
+            elif coletaveis.tipo == "slow":
+                alien.aceleracao = 0.5
+                coletaveis.tempo = pygame.time.get_ticks()
+                coletaveis.slow_qnt += 1
             
 
             coletaveis.status = False
@@ -87,12 +94,12 @@ def jogo(screen):
     alien = Alien()
     disparo = Disparos()
     coletaveis = Coletaveis()
-
     rodando = True
     while rodando:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                rodando = False
+                pygame.quit()
+                exit()
         
         screen.blit(bg,(0,0))
 
@@ -104,6 +111,7 @@ def jogo(screen):
         if pygame.time.get_ticks() - coletaveis.tempo >= 10000:
             player.aceleracao = 1
             coletaveis.tempo = 0
+            alien.aceleracao = 1
 
         #comandos
         tecla = pygame.key.get_pressed()
@@ -149,21 +157,26 @@ def jogo(screen):
 
         #movimentos
         x -=0.5
-        alien.x -= 2 #movimentando o alienww
+        #movimento do alien
+        if player.pontos < 40:
+            alien.x -= 1.5 * alien.aceleracao 
+        else:
+            alien.x -= 2 * alien.aceleracao 
         disparo.x += disparo.vel
         if coletaveis.status:
             coletaveis.x -=0.5
 
         player.desenhar_vida(screen)
+        coletaveis.desenhar_qnt_coletaveis(screen)
 
         #posições rect
         player.rect.y,player.rect.x = player.y,player.x
         disparo.rect.x,disparo.rect.y = disparo.x,disparo.y
         alien.rect.x,alien.rect.y = alien.x,alien.y
 
-        points = player.pontos
-        pontuacao = fonte.render(f"Pontos: {int(points)} ",True,(255,255,255))
-        screen.blit(pontuacao,(50,50))
+       
+        pontuacao = fonte.render(f"Pontos: {int(player.pontos)} ",True,(255,255,255))
+        screen.blit(pontuacao,(30,50))
 
 
         #Criando imagens
@@ -175,7 +188,7 @@ def jogo(screen):
 
 
         if not rodando: # fim de jogo
-            game_over(screen, points)
+            game_over(screen, player.pontos)
  
 if __name__ == "__main__":
     pygame.init()  # Inicializa o pygame

@@ -7,6 +7,7 @@ class Alien:
 
         self.x = 1350
         self.y = 350
+        self.aceleracao = 1
 
         self.rect = self.img.get_rect()
     
