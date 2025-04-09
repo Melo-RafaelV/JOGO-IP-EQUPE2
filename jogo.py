@@ -4,6 +4,7 @@ from Scripts.player import Player
 from Scripts.alien import Alien
 from Scripts.disparos import Disparos
 from Scripts.coletaveis import Coletaveis
+import time
 
 
 def colisoes(player,alien,disparo,coletaveis):
@@ -21,12 +22,12 @@ def colisoes(player,alien,disparo,coletaveis):
 
             elif coletaveis.tipo == "energetico":
                 player.aceleracao = 1.5
-                coletaveis.tempo = pygame.time.get_ticks()
+                coletaveis.tempo = time.perf_counter()
                 coletaveis.energetico_qnt += 1
            
             elif coletaveis.tipo == "slow":
                 alien.aceleracao = 0.5
-                coletaveis.tempo = pygame.time.get_ticks()
+                coletaveis.tempo = time.perf_counter()
                 coletaveis.slow_qnt += 1
             
 
@@ -56,7 +57,7 @@ def tela_menu(screen):
             if event.type == pygame.KEYDOWN:
                 jogo(screen)
 
-def game_over(screen, pontuacao):
+def game_over(screen, pontuacao,tempo):
     # tela de Game Over - pontuação e reiniciar
     bg_menu = pygame.image.load("images/gameover_bg.png").convert()
     bg_menu = pygame.transform.scale(bg_menu, (1280, 720))
@@ -66,7 +67,7 @@ def game_over(screen, pontuacao):
 
         fonte = pygame.font.SysFont("fonte/Minecraft.ttf", 35)
         pontuacao_final = fonte.render(f"Pontuação final: {pontuacao} pontos", True, (255, 255, 255))
-        tempo_final = fonte.render(f"Tempo final: 0 segundos", True, (255, 255, 255))
+        tempo_final = fonte.render(f"Tempo final: {tempo} segundos", True, (255, 255, 255))
         screen.blit(pontuacao_final, (430, 450))
         screen.blit(tempo_final, (430, 490))
         pygame.display.update()
@@ -95,6 +96,7 @@ def jogo(screen):
     disparo = Disparos()
     coletaveis = Coletaveis()
     rodando = True
+    tempo = time.perf_counter()
     while rodando:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -108,7 +110,7 @@ def jogo(screen):
         if rel_x <1280:
             screen.blit(bg,(rel_x,0))
 
-        if pygame.time.get_ticks() - coletaveis.tempo >= 10000:
+        if time.perf_counter() - coletaveis.tempo >= 10:
             player.aceleracao = 1
             coletaveis.tempo = 0
             alien.aceleracao = 1
@@ -188,7 +190,7 @@ def jogo(screen):
 
 
         if not rodando: # fim de jogo
-            game_over(screen, player.pontos)
+            game_over(screen, player.pontos, int(time.perf_counter()- tempo))
  
 if __name__ == "__main__":
     pygame.init()  # Inicializa o pygame
