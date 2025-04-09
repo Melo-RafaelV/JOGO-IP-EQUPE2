@@ -10,7 +10,8 @@ import time
 def colisoes(player,alien,disparo,coletaveis):
     if player.rect.colliderect(alien.rect) or alien.rect.x <= 60:
         player.vidas -= 1
-        return True
+        alien.respawn()
+        return False
     elif disparo.rect.colliderect(alien.rect):
         player.pontos += 1
         return True
@@ -147,7 +148,7 @@ def jogo(screen):
             alien.respawn()
             disparo.atirar(player)
         
-        if player.pontos%10 == 0 and player.pontos > 0 and not coletaveis.status:
+        if player.pontos%5 == 0 and player.pontos > 0 and not coletaveis.status:
             coletaveis.status = True
         
         if coletaveis.status:
@@ -176,6 +177,7 @@ def jogo(screen):
             alien.x -= 1.5 * alien.aceleracao 
         else:
             alien.x -= 2 * alien.aceleracao 
+        
         disparo.x += disparo.vel
         if coletaveis.status:
             coletaveis.x -=0.5
