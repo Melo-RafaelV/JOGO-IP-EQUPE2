@@ -58,7 +58,7 @@ Galactic Defender é um jogo de visão top-down desenvolvido com a biblioteca Py
 
 ## Bibliotecas e ferramentas
 
-| Atalhos          | Função                                                        |
+| Biblioteca          | Utilização                                                       |
 | ---------------- | ------------------------------------------------------------- |
 | PyGame |	A biblioteca pygame é a principal de nosso projeto, pois ela tem funções específicas que facilitam na criação do jogo, principalmente na questão da renderização de objetos e as interações entre eles.|
 | Random |A biblioteca "Random" foi utilizada em algumas partes do código, utilizando a função "Randint", que sorteia um número inteiro dentro de um intervalo definido, fizemos as mecânica para decidir qual coletável seria "dropado" apartir dela.|
