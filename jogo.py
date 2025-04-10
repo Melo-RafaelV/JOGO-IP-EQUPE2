@@ -4,29 +4,36 @@ from Scripts.player import Player
 from Scripts.alien import Alien
 from Scripts.disparos import Disparos
 from Scripts.coletaveis import Coletaveis
+from Scripts.sons import Sons
 import time
 
 
 def colisoes(player,alien,disparo,coletaveis):
+    sons = Sons()
     if player.rect.colliderect(alien.rect) or alien.rect.x <= 60:
+        #som de perder vida
         player.vidas -= 1
         alien.respawn()
         return False
     elif disparo.rect.colliderect(alien.rect):
+        #somde colisao
         player.pontos += 1
         return True
     elif coletaveis.status:
         if disparo.rect.colliderect(coletaveis.rect):
             if coletaveis.tipo == "cura":
+                sons.vida()
                 player.vidas = min(player.vidas + 1, 5)
                 coletaveis.cura_qnt +=1
 
             elif coletaveis.tipo == "energetico":
+                sons.energetico()
                 player.aceleracao = 1.5
                 coletaveis.tempo = time.perf_counter()
                 coletaveis.energetico_qnt += 1
            
             elif coletaveis.tipo == "slow":
+                #som de congelar
                 alien.aceleracao = 0.5
                 coletaveis.tempo = time.perf_counter()
                 coletaveis.slow_qnt += 1
@@ -62,7 +69,8 @@ def game_over(screen, pontuacao,tempo):
     # tela de Game Over - pontuação e reiniciar
     bg_menu = pygame.image.load("images/gameover_bg.png").convert()
     bg_menu = pygame.transform.scale(bg_menu, (1280, 720))
-
+    sons = Sons()
+    sons.game_over()
     while True:
         screen.blit(bg_menu, (0, 0))
 
@@ -96,6 +104,7 @@ def jogo(screen):
     alien = Alien()
     disparo = Disparos()
     coletaveis = Coletaveis()
+    sons = Sons()
     rodando = True
     tempo = time.perf_counter()
     while rodando:
@@ -129,6 +138,7 @@ def jogo(screen):
                 disparo.y +=1 *player.aceleracao
 
         if tecla[pygame.K_SPACE]:
+            sons.disparo()
             disparo.status = True
             disparo.vel = 4
 
