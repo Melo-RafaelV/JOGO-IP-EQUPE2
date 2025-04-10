@@ -1,7 +1,7 @@
 
 ## Galactic Defender
 
-Galactic Defender é um jogo de visão top-down desenvolvido com a biblioteca Pygame, inspirado em clássicos como Galaga, Space Invaders e Geometry Wars. O jogador começa com 3 pontos de escudo (vidas), que podem ser reduzidos ao colidir com inimigos ou ao deixar que eles passem pela nave. No entanto, é possível coletar itens que ajudam a prolongar a sobrevivência da nave. O objetivo do jogo é destruir o maior número possível de aliens.
+Galactic Defender é um jogo de visão top-down desenvolvido com a biblioteca Pygame, inspirado em clássicos como Galaga, Space Invaders e Geometry Wars. O jogador começa com 3 vidas, que podem ser reduzidos ao colidir com inimigos ou ao deixar que eles passem pela nave. No entanto, é possível coletar itens que ajudam a prolongar a sobrevivência da nave. O objetivo do jogo é destruir o maior número possível de aliens.
 
 
 
