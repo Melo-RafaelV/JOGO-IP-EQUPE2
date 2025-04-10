@@ -74,7 +74,8 @@ O código foi estruturando usando o conceito de programação orientada a objeto
 
 - Player(): Classe responsável por armazenar os dados e as funções ralacionadas ao player.
 - Alien(): Classe responsável por armazenar os dados e as funções relacionadas aos aliens.
-- Coletáveis():: Classe responsável por armazenar os dados e as funções relacionadas aos coletáveis.
+- Coletáveis(): Classe responsável por armazenar os dados e as funções relacionadas aos coletáveis.
+- Sons(): Classe responsável pelos efeitos sonoros do jogo.
 - Disparo(): Classe responsável por armazernar dados do disparo da nave e controlar o sistema de disparo do player.
 - respawn(): Função para respawnar o alien após ele ser eliminado.
 - desenhar_coletaveis(): Função para decidir qual coletável será dropado.
