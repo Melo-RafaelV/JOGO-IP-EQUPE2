@@ -28,7 +28,7 @@ def colisoes(player,alien,disparo,coletaveis,sons):
 
             elif coletaveis.tipo == "energetico":
                 sons.energetico()
-                player.aceleracao = 1.5
+                player.aceleracao = 2
                 coletaveis.tempo = time.perf_counter()
                 coletaveis.energetico_qnt += 1
            
@@ -96,7 +96,7 @@ def jogo(screen):
     pygame.display.set_caption("JOGO DA NAVE")
 
     #Criação do Fundo do jogo
-    bg = pygame.image.load("images/fundo.jpg").convert_alpha()
+    bg = pygame.image.load("images/fundo.png").convert_alpha()
     bg = pygame.transform.scale(bg,(x,y))
     pause_bg = pygame.image.load("images/Jogo Pausado.png").convert_alpha()
     pause_bg = pygame.transform.scale(pause_bg,(x,y))
