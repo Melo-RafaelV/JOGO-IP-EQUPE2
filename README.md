@@ -90,5 +90,10 @@ O código foi estruturando usando o conceito de programação orientada a objeto
 O principal desafio que enfrentamos durante a realização deste projeto foi aprender a utilizar ferramentas e conceitos que nunca havíamos visto antes, como a biblioteca Pygame e a programação orientada a objetos. No entanto, foi extremamente útil adquirir esses conhecimentos, pois eles nos permitiram realizar tarefas muito mais avançadas do que imaginávamos no início do curso.
 Outro aprendizado importante que tivemos com este projeto foi o uso de plataformas como o GitHub e o Trello, que nos ajudaram a organizar o desenvolvimento de forma mais eficiente e colaborativa.
   
+## Imagens
 
+![Image](https://github.com/user-attachments/assets/ffa7a40e-3ed0-4b57-84b9-449b5e611e2e)
+
+<img src="images/menu_bg.png" alt="Descrição da imagem"/>
+<img src="images/gameover_bg.png" alt="Descrição da imagem"/>
 
