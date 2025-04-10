@@ -1,7 +1,7 @@
 
 ## Galactic Defender
 
-Galactic Defender é um jogo de visão top-down desenvolvido com a biblioteca Pygame, inspirado em clássicos como Galaga, Space Invaders e Geometry Wars. O jogador começa com 3 pontos de escudo (vidas), que podem ser reduzidos ao colidir com inimigos ou ao deixar que eles passem pela nave. No entanto, é possível coletar itens que ajudam a prolongar a sobrevivência da nave. O objetivo do jogo é destruir o maior número possível de aliens.
+Galactic Defender é um jogo de visão top-down desenvolvido com a biblioteca Pygame, inspirado em clássicos como Galaga, Space Invaders e Geometry Wars. O jogador começa com 3 vidas, que podem ser reduzidos ao colidir com inimigos ou ao deixar que eles passem pela nave. No entanto, é possível coletar itens que ajudam a prolongar a sobrevivência da nave. O objetivo do jogo é destruir o maior número possível de aliens.
 
 
 
@@ -40,8 +40,9 @@ Galactic Defender é um jogo de visão top-down desenvolvido com a biblioteca Py
 
 | Atalhos          | Função                                                        |
 | ---------------- | ------------------------------------------------------------- |
-|  ↑ ,  ↓          | Movimentação |
+|  w ,  s          | Movimentação |
 |Barra de espaço   | Disparar     |
+| P                | Pausar o jogo|
 
 
 
@@ -57,7 +58,7 @@ Galactic Defender é um jogo de visão top-down desenvolvido com a biblioteca Py
 
 ## Bibliotecas e ferramentas
 
-| Atalhos          | Função                                                        |
+| Biblioteca          | Utilização                                                       |
 | ---------------- | ------------------------------------------------------------- |
 | PyGame |	A biblioteca pygame é a principal de nosso projeto, pois ela tem funções específicas que facilitam na criação do jogo, principalmente na questão da renderização de objetos e as interações entre eles.|
 | Random |A biblioteca "Random" foi utilizada em algumas partes do código, utilizando a função "Randint", que sorteia um número inteiro dentro de um intervalo definido, fizemos as mecânica para decidir qual coletável seria "dropado" apartir dela.|
@@ -73,7 +74,8 @@ O código foi estruturando usando o conceito de programação orientada a objeto
 
 - Player(): Classe responsável por armazenar os dados e as funções ralacionadas ao player.
 - Alien(): Classe responsável por armazenar os dados e as funções relacionadas aos aliens.
-- Coletáveis():: Classe responsável por armazenar os dados e as funções relacionadas aos coletáveis.
+- Coletáveis(): Classe responsável por armazenar os dados e as funções relacionadas aos coletáveis.
+- Sons(): Classe responsável pelos efeitos sonoros do jogo.
 - Disparo(): Classe responsável por armazernar dados do disparo da nave e controlar o sistema de disparo do player.
 - respawn(): Função para respawnar o alien após ele ser eliminado.
 - desenhar_coletaveis(): Função para decidir qual coletável será dropado.
