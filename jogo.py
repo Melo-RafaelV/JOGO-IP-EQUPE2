@@ -8,8 +8,7 @@ from Scripts.sons import Sons
 import time
 
 
-def colisoes(player,alien,disparo,coletaveis):
-    sons = Sons()
+def colisoes(player,alien,disparo,coletaveis,sons):
     if player.rect.colliderect(alien.rect) or alien.rect.x <= 60:
         #som de perder vida
         player.vidas -= 1
@@ -65,11 +64,10 @@ def tela_menu(screen):
             if event.type == pygame.KEYDOWN:
                 jogo(screen)
 
-def game_over(screen, pontuacao,tempo):
+def game_over(screen, pontuacao,tempo,sons):
     # tela de Game Over - pontuação e reiniciar
     bg_menu = pygame.image.load("images/gameover_bg.png").convert()
     bg_menu = pygame.transform.scale(bg_menu, (1280, 720))
-    sons = Sons()
     sons.game_over()
     while True:
         screen.blit(bg_menu, (0, 0))
@@ -154,7 +152,7 @@ def jogo(screen):
         if disparo.x == 1300 :
             disparo.atirar(player)
 
-        if colisoes(player,alien,disparo,coletaveis):
+        if colisoes(player,alien,disparo,coletaveis,sons):
             alien.respawn()
             disparo.atirar(player)
         
@@ -214,7 +212,7 @@ def jogo(screen):
 
 
         if not rodando: # fim de jogo
-            game_over(screen, player.pontos, int(time.perf_counter()- tempo))
+            game_over(screen, player.pontos, int(time.perf_counter()- tempo),sons)
  
 if __name__ == "__main__":
     pygame.init()  # Inicializa o pygame
