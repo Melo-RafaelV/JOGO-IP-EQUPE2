@@ -40,8 +40,9 @@ Galactic Defender é um jogo de visão top-down desenvolvido com a biblioteca Py
 
 | Atalhos          | Função                                                        |
 | ---------------- | ------------------------------------------------------------- |
-|  ↑ ,  ↓          | Movimentação |
+|  w ,  s          | Movimentação |
 |Barra de espaço   | Disparar     |
+| P                | Pausar o jogo|
 
 
 
