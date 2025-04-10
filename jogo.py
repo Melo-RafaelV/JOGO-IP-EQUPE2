@@ -10,7 +10,8 @@ import time
 
 def colisoes(player,alien,disparo,coletaveis,sons):
     if player.rect.colliderect(alien.rect) or alien.rect.x <= 60:
-        #som de perder vida
+        if player.pontos >= 1:
+            sons.hit()
         player.vidas -= 1
         alien.respawn()
         return False
@@ -97,6 +98,8 @@ def jogo(screen):
     #Criação do Fundo do jogo
     bg = pygame.image.load("images/fundo.jpg").convert_alpha()
     bg = pygame.transform.scale(bg,(x,y))
+    pause_bg = pygame.image.load("images/Jogo Pausado.png").convert_alpha()
+    pause_bg = pygame.transform.scale(pause_bg,(x,y))
 
     player = Player()
     alien = Alien()
@@ -168,7 +171,10 @@ def jogo(screen):
         
         if tecla[pygame.K_p]:
             pause = True
+            screen.blit(pause_bg,(0,0))
+            pygame.display.update()
             while pause:
+
                 for event in pygame.event.get():
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_RETURN:
