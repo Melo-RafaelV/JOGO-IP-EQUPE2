@@ -33,7 +33,7 @@ def colisoes(player,alien,disparo,coletaveis,sons):
                 coletaveis.energetico_qnt += 1
            
             elif coletaveis.tipo == "slow":
-                #som de congelar
+                #som de congelar 
                 alien.aceleracao = 0.5
                 coletaveis.tempo = time.perf_counter()
                 coletaveis.slow_qnt += 1
@@ -76,8 +76,8 @@ def game_over(screen, pontuacao,tempo,sons):
         fonte = pygame.font.SysFont("fonte/Minecraft.ttf", 35)
         pontuacao_final = fonte.render(f"Pontuação final: {pontuacao} pontos", True, (255, 255, 255))
         tempo_final = fonte.render(f"Tempo final: {tempo} segundos", True, (255, 255, 255))
-        screen.blit(pontuacao_final, (430, 450))
-        screen.blit(tempo_final, (430, 490))
+        screen.blit(pontuacao_final, (500, 350))
+        screen.blit(tempo_final, (500, 400))
         pygame.display.update()
         
         for event in pygame.event.get():
