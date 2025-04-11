@@ -87,7 +87,7 @@ def game_over(screen, pontuacao,tempo,sons,maior_pontuacao):
                 pygame.quit()
                 exit()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
+                if event.key == pygame.K_RETURN: # botão para reiniciar o jogo
                     jogo(screen)
 
 def jogo(screen):
@@ -260,5 +260,5 @@ def jogo(screen):
 if __name__ == "__main__":
     pygame.init()  # Inicializa o pygame
     screen = pygame.display.set_mode((1280, 720))
-    pygame.display.set_caption("JOGO DA NAVE")
+    pygame.display.set_caption("SPACE INVADERS")
     tela_menu(screen)  # Exibe o menu inicial
