@@ -132,26 +132,34 @@ def jogo(screen):
         tecla = pygame.key.get_pressed()
         if tecla[pygame.K_w] and player.y > 1:
             if player.pontos > 20:
-                player.y -=1.5 *player.aceleracao
+                player.y -=1.2 *player.aceleracao
+            elif player.pontos > 40:
+                player.y -=1.8 *player.aceleracao
             else:
                 player.y -=1 * player.aceleracao
             
             if not disparo.status:
                 if player.pontos > 20: 
-                    disparo.y -=1.5 *player.aceleracao
+                    disparo.y -=1.2 *player.aceleracao
+                elif player.pontos > 40:
+                    disparo.y -=1.8 *player.aceleracao
                 else:
                     disparo.y -=1 *player.aceleracao
                 
 
         if tecla[pygame.K_s] and player.y < 665:
             if player.pontos > 20:
-                player.y +=1.5*player.aceleracao
+                player.y +=1.2*player.aceleracao
+            elif player.pontos > 40:
+                player.y -=1.8 *player.aceleracao
             else:
                 player.y +=1*player.aceleracao
             
             if not disparo.status:
                 if player.pontos > 20: 
-                    disparo.y +=1.5 *player.aceleracao
+                    disparo.y +=1.2 *player.aceleracao
+                elif player.pontos > 40:
+                    disparo.y -=1.8 *player.aceleracao
                 else:
                     disparo.y +=1 *player.aceleracao
 
