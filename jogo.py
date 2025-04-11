@@ -33,7 +33,7 @@ def colisoes(player,alien,disparo,coletaveis,sons):
                 coletaveis.energetico_qnt += 1
            
             elif coletaveis.tipo == "slow":
-                #som de congelar 
+                sons.moeda()
                 alien.aceleracao = 0.5
                 coletaveis.tempo = time.perf_counter()
                 coletaveis.slow_qnt += 1

@@ -11,6 +11,8 @@ class Sons:
         self.som_game_over.set_volume(3)
         self.som_hit = pygame.mixer.Sound("sons/hit.mp3")
         self.som_hit.set_volume(0.2)
+        self.som_moeda = pygame.mixer.Sound("sons/moeda.wav")
+        self.som_moeda.set_volume(0.2)
     def disparo(self):
         self.som_disparo.play()
     def energetico(self):
@@ -21,4 +23,5 @@ class Sons:
         self.som_game_over.play()
     def hit(self):
         self.som_hit.play()
-    #falta a funçao de quando atingir um alien ou quando perder uma vida, e o som do slow
+    def moeda(self):
+        self.som_moeda.play()
