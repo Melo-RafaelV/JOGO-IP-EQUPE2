@@ -9,7 +9,7 @@ Space Defender é um jogo desenvolvido com a biblioteca Pygame, inspirado em cl�
 
 - Rafael Victor (rvpm)
 - Marcos Kaiô (mkbs)
-- Esdras Santos (evms)
+- Esdras Vinicius (evms)
 - João Ferreira (jltf)
 - Luiz Gouveia (lfcg)
 - Guilherme Krauss (gmvck)
@@ -81,7 +81,7 @@ O código foi estruturando usando o conceito de programação orientada a objeto
 - desenhar_coletaveis(): Função para decidir qual coletável será dropado.
 - desenhar_qnt_coletaveis(): Função para mostrar a quantidade de coletáveis coletados na tela.
 - restaurar(): Função para resetar a posição do coletavel após ele ser coletado.
-- atirar():: Função para atirar.
+- atirar(): Função para atirar.
 - desenhar_vida(): Função para exibir a vida do player.
 
 
