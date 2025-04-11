@@ -131,42 +131,42 @@ def jogo(screen):
         #comandos
         tecla = pygame.key.get_pressed()
         if tecla[pygame.K_w] and player.y > 1:
-            if player.pontos > 20:
-                player.y -=1.2 *player.aceleracao
-            elif player.pontos > 40:
-                player.y -=1.8 *player.aceleracao
+            if player.pontos > 40:
+                player.y -= 1 *player.aceleracao
+            elif player.pontos > 20:
+                player.y -= 0.7 *player.aceleracao
             else:
-                player.y -=1 * player.aceleracao
+                player.y -= 0.5 * player.aceleracao
             
             if not disparo.status:
-                if player.pontos > 20: 
-                    disparo.y -=1.2 *player.aceleracao
-                elif player.pontos > 40:
-                    disparo.y -=1.8 *player.aceleracao
+                if player.pontos > 40:
+                    disparo.y -= 1 *player.aceleracao
+                elif player.pontos > 20: 
+                    disparo.y -= 0.7 *player.aceleracao
                 else:
-                    disparo.y -=1 *player.aceleracao
+                    disparo.y -= 0.5 *player.aceleracao
                 
 
         if tecla[pygame.K_s] and player.y < 665:
-            if player.pontos > 20:
-                player.y +=1.2*player.aceleracao
-            elif player.pontos > 40:
-                player.y -=1.8 *player.aceleracao
+            if player.pontos > 40:
+                player.y -= 1 *player.aceleracao
+            elif player.pontos > 20:
+                player.y += 0.7 *player.aceleracao
             else:
-                player.y +=1*player.aceleracao
+                player.y += 0.5 *player.aceleracao
             
             if not disparo.status:
-                if player.pontos > 20: 
-                    disparo.y +=1.2 *player.aceleracao
-                elif player.pontos > 40:
-                    disparo.y -=1.8 *player.aceleracao
+                if player.pontos > 40:
+                    disparo.y -= 1 *player.aceleracao
+                elif player.pontos > 20: 
+                    disparo.y += 0.7 *player.aceleracao
                 else:
-                    disparo.y +=1 *player.aceleracao
+                    disparo.y +=0.5 *player.aceleracao
 
         if tecla[pygame.K_SPACE]:
             sons.disparo()
             disparo.status = True
-            disparo.vel = 4
+            disparo.vel = 2
 
         #respawn
         if alien.x == 50:
@@ -213,11 +213,11 @@ def jogo(screen):
         x -=0.5
         #movimento do alien
         if player.pontos < 20:
-            alien.x -= 1.5 * alien.aceleracao 
+            alien.x -= 1 * alien.aceleracao 
         elif player.pontos <40:
-            alien.x -= 2 * alien.aceleracao 
+            alien.x -= 1.5 * alien.aceleracao 
         else:
-            alien.x -= 2.5 * alien.aceleracao
+            alien.x -= 2 * alien.aceleracao
         
         disparo.x += disparo.vel
         if coletaveis.status:
@@ -247,7 +247,6 @@ def jogo(screen):
         if not rodando: # fim de jogo
             with open("Scripts/score.txt","r") as arquivo:
                 score = arquivo.read()
-                print(score)
             if int(score) < player.pontos:
                 maior_pontuacao = player.pontos
                 with open("Scripts/score.txt","w") as arquivo:
