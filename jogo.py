@@ -187,10 +187,12 @@ def jogo(screen):
         #movimentos
         x -=0.5
         #movimento do alien
-        if player.pontos < 40:
+        if player.pontos < 20:
             alien.x -= 1.5 * alien.aceleracao 
-        else:
+        elif player.pontos <40:
             alien.x -= 2 * alien.aceleracao 
+        else:
+            alien.x -= 2.5 * alien.aceleracao
         
         disparo.x += disparo.vel
         if coletaveis.status:

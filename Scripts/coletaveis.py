@@ -23,7 +23,13 @@ class Coletaveis:
     
     def desenhar_coletaveis(self,screen,player):
         if not self.tipo:
-            if player.vidas < 5:
+            if player.pontos == 5:
+                self.num = 1
+            elif player.pontos == 10:
+                self.num = 2
+            elif player.pontos == 15:
+                self.num =3
+            elif player.vidas < 5:
                 self.num = random.randint(1,3)
             else:
                 self.num = random.randint(2,3)
