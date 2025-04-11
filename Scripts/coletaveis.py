@@ -8,9 +8,9 @@ class Coletaveis:
         self.cura = pygame.image.load("images/vida.png").convert_alpha()
         self.cura = pygame.transform.scale(self.cura,(50,50))
         self.energetico = pygame.image.load("images/energetico.png").convert_alpha()
-        self.energetico = pygame.transform.scale(self.energetico,(50,50))
+        self.energetico = pygame.transform.scale(self.energetico,(60,60))
         self.slow = pygame.image.load("images/slowdown.png").convert_alpha()
-        self.slow = pygame.transform.scale(self.slow,(50,50))
+        self.slow = pygame.transform.scale(self.slow,(60,60))
         self.rect = None
         self.cura_qnt = 0
         self.energetico_qnt = 0
