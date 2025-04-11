@@ -65,7 +65,7 @@ def tela_menu(screen):
             if event.type == pygame.KEYDOWN:
                 jogo(screen)
 
-def game_over(screen, pontuacao,tempo,sons):
+def game_over(screen, pontuacao,tempo,sons,maior_pontuacao):
     # tela de Game Over - pontuação e reiniciar
     bg_menu = pygame.image.load("images/gameover_bg.png").convert()
     bg_menu = pygame.transform.scale(bg_menu, (1280, 720))
@@ -74,10 +74,12 @@ def game_over(screen, pontuacao,tempo,sons):
         screen.blit(bg_menu, (0, 0))
 
         fonte = pygame.font.SysFont("fonte/Minecraft.ttf", 35)
-        pontuacao_final = fonte.render(f"Pontuação final: {pontuacao} pontos", True, (255, 255, 255))
-        tempo_final = fonte.render(f"Tempo final: {tempo} segundos", True, (255, 255, 255))
+        pontuacao_final = fonte.render(f"Pontuação Final: {pontuacao} pontos", True, (255, 255, 255))
+        tempo_final = fonte.render(f"Tempo Final: {tempo} segundos", True, (255, 255, 255))
+        score = fonte.render(f"Top Score: {maior_pontuacao} pontos",True, (255, 255, 255))
         screen.blit(pontuacao_final, (500, 350))
         screen.blit(tempo_final, (500, 400))
+        screen.blit(score, (500,450))
         pygame.display.update()
         
         for event in pygame.event.get():
@@ -235,7 +237,17 @@ def jogo(screen):
 
 
         if not rodando: # fim de jogo
-            game_over(screen, player.pontos, int(time.perf_counter()- tempo),sons)
+            with open("Scripts/score.txt","r") as arquivo:
+                score = arquivo.read()
+                print(score)
+            if int(score) < player.pontos:
+                maior_pontuacao = player.pontos
+                with open("Scripts/score.txt","w") as arquivo:
+                    arquivo.write(str(maior_pontuacao))
+            else:
+                maior_pontuacao = score
+
+            game_over(screen, player.pontos, int(time.perf_counter()- tempo),sons,maior_pontuacao)
  
 if __name__ == "__main__":
     pygame.init()  # Inicializa o pygame
