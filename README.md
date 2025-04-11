@@ -83,6 +83,7 @@ O código foi estruturando usando o conceito de programação orientada a objeto
 - restaurar(): Função para resetar a posição do coletavel após ele ser coletado.
 - atirar(): Função para atirar.
 - desenhar_vida(): Função para exibir a vida do player.
+- score.txt: Arquivo onde fica guardada a maior pontuação obtida no jogo.
 
 
 ## Desafios e Experiências
@@ -95,5 +96,6 @@ Outro aprendizado importante que tivemos com este projeto foi o uso de plataform
 ![Image](https://github.com/user-attachments/assets/ffa7a40e-3ed0-4b57-84b9-449b5e611e2e)
 
 <img src="images/menu_bg.png" alt="Descrição da imagem"/>
-<img src="images/gameover_bg.png" alt="Descrição da imagem"/>
+
+![Image](https://github.com/user-attachments/assets/2f2b25b6-ec5b-47ec-9e75-3d08c9527e09)
 
