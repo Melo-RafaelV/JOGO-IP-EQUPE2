@@ -108,6 +108,8 @@ def jogo(screen):
     disparo = Disparos()
     coletaveis = Coletaveis()
     sons = Sons()
+
+    
     rodando = True
     tempo = time.perf_counter()
     while rodando:
